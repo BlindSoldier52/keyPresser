@@ -1,0 +1,53 @@
+Key Presser 1.0 for NVDA
+========================
+
+Warning
+-------
+This add-on was written for experiments only. I don't encourage cheating with this.
+The same warning is shown once, the first time the add-on runs.
+
+
+What is in this archive
+-----------------------
+keyPresser-1.0.nvda-addon   the add-on, this is the file you install
+documentation.html          the full manual, open it in any browser
+install.txt                 this file
+
+
+How to install
+--------------
+Press enter on keyPresser-1.0.nvda-addon, or open NVDA menu, Tools, Add-on store,
+Install from external source, and choose that file. Confirm the prompt, then restart
+NVDA when it offers to.
+
+To remove it, use NVDA menu, Tools, Add-on store, Installed add-ons.
+
+
+First steps
+-----------
+NVDA+y            open the settings
+NVDA+j            start or stop
+NVDA+z            stop immediately, from anywhere
+NVDA+alt+z        switch to the next profile
+
+Out of the box the add-on presses the space bar once a second, after a spoken
+countdown of three. Open the settings with NVDA+y to change what is sent, how often,
+and when it should stop on its own. Everything else is explained in
+documentation.html.
+
+More commands, such as reporting the status or nudging the interval while it runs,
+have no gesture until you give them one, in NVDA menu, Preferences, Input gestures,
+under the Key Presser category.
+
+
+Where the settings live
+-----------------------
+%APPDATA%\nvda\keyPresser\settings.json
+
+They are kept outside the add-on folder, so they survive updating or reinstalling it.
+
+
+Requirements
+------------
+NVDA 2019.3 or newer, on Windows.
+

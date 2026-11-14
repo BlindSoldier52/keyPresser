@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Key Presser</title>
+</head>
+<body>
+
+<h1>Key Presser</h1>
+
+<p>Key Presser repeatedly sends a key, a sequence of keys, a piece of text or a mouse
+click at an interval that you choose. It uses low level scan code injection, so it
+reaches games and engines that read raw input, including SDL, DirectInput and Unity
+titles, as well as ordinary Windows programs, browsers and Python applications.</p>
+
+<h2>Warning</h2>
+
+<p>This add-on was written for experiments only. I don't encourage cheating with this.</p>
+
+<p>The same warning appears in a small window the first time the add-on runs. Once you
+close it with OK or Escape, it never comes back by itself. It can be shown again from the
+settings, or with a command you can assign a gesture to.</p>
+
+<p>The window does not block NVDA while it is open, so you can keep using the NVDA menu,
+the settings and NVDA Remote even if you have not closed it yet.</p>
+
+<h2>Commands</h2>
+
+<table>
+<tr><th>Gesture</th><th>Action</th></tr>
+<tr><td>NVDA+y</td><td>Opens the Key Presser settings.</td></tr>
+<tr><td>NVDA+j</td><td>Starts or stops the presser with the active profile.</td></tr>
+<tr><td>NVDA+z</td><td>Stops the presser immediately, from anywhere.</td></tr>
+<tr><td>NVDA+alt+z</td><td>Switches to the next profile.</td></tr>
+<tr><td>Unassigned</td><td>Reports the status: profile, interval and how many actions were sent.</td></tr>
+<tr><td>Unassigned</td><td>Increases the interval of the active profile by 50 milliseconds.</td></tr>
+<tr><td>Unassigned</td><td>Decreases the interval of the active profile by 50 milliseconds.</td></tr>
+<tr><td>Unassigned</td><td>Locks the active profile to the program currently in the foreground.</td></tr>
+<tr><td>Unassigned</td><td>Removes the program restriction from the active profile.</td></tr>
+<tr><td>Unassigned</td><td>Shows the warning again.</td></tr>
+</table>
+
+<p>The unassigned commands can be given a gesture in NVDA menu, Preferences, Input
+gestures, under the Key Presser category. The interval commands work while the presser is
+running, so you can speed it up or slow it down live.</p>
+
+<h2>Settings</h2>
+
+<p>The settings are reached with NVDA+y, or from NVDA menu, Preferences, Settings, Key
+Presser. Everything is stored per profile and is written to disk when you press OK or
+Apply.</p>
+
+<h3>Profiles</h3>
+
+<p>Each profile is a complete, independently saved set of options. Create as many as you
+like with New, Duplicate, Rename and Delete, then move between them with NVDA+alt+z
+without opening the settings at all.</p>
+
+<h3>What to send</h3>
+
+<ul>
+<li><strong>Mode</strong>: keys and text, or a mouse button. Only the controls that belong to
+the chosen mode are shown, so there is nothing irrelevant to tab past.</li>
+<li><strong>Sequences</strong>: a profile holds as many sequences as you like, each with a
+name and a tick box. Only the ticked ones run, one after another, in the order they appear
+in the list; the unticked ones stay exactly as they are for later. Space toggles the tick,
+the arrow keys move between sequences, and New, Duplicate, Rename and Delete manage the
+list. This is how you keep, say, an Attack sequence and a Chat sequence side by side and
+turn one off without losing it.</li>
+<li><strong>Steps of the selected sequence</strong>: the steps played in order whenever
+that sequence runs. Keys and pieces of text live in the same list, so a step can be a key,
+a whole sentence, or a pause, in whatever order you like. Nothing has to be typed by hand;
+the list is built with the buttons underneath it.
+<ul>
+<li>To press Y and then Enter, add Y, then add Enter. To type a name and then confirm it,
+add a text step with the name, then add Enter. The gap between two steps is the pause
+between steps, under Timing; the interval is the wait before the whole sequence starts
+again.</li>
+<li><strong>Add key</strong> opens a chooser. Pick a category, pick a key from the list,
+tick any of Control, Shift, Alt and Windows, and press OK. The new step is inserted after
+the one that is selected. The categories are letters, digits, function keys, navigation,
+editing, numpad, modifier keys, locks and system, media, punctuation, and raw code, which
+together cover 124 keys.</li>
+<li><strong>Add text</strong> opens a multi line box. The text is sent as Unicode
+characters, so it works whatever the keyboard layout is, and every line break in the box
+becomes a real Enter press. Commas, backslashes and spaces at the end of the text are
+handled for you.</li>
+<li><strong>Add random</strong> makes one step that has several options, one of which is
+picked at random every single time the step runs. Choose whether the options are plain
+texts or keys, then write one option per line. Use it so a repeated message is never quite
+the same twice, or so a key varies from cycle to cycle. Two options are the minimum.</li>
+<li><strong>Add pause</strong> inserts a wait of as many milliseconds as you like between
+two steps.</li>
+<li><strong>Edit</strong> reopens the right box for the selected step, whichever kind it is.
+<strong>Remove</strong>, <strong>Move up</strong> and <strong>Move down</strong> do what
+they say.</li>
+<li><strong>Raw code</strong> is the last category in the chooser. It takes
+<code>vk:0x41</code> for a virtual key code or <code>sc:0x1E</code> for a scan code, for
+games that expect an exact hardware code.</li>
+<li><strong>Type the sequence</strong> is there if you would rather write the whole thing
+out at once, in the comma separated form, for example
+<code>ctrl+a, w, wait:500, f5</code>. A text step is written as
+<code>text:hello</code>, and inside it a comma is written <code>\,</code>, a line break
+<code>\n</code>, a backslash <code>\\</code>, and a space at the very end of the text
+<code>\s</code>. Spaces around the plus sign of a combination are allowed, so
+<code>ctrl + a</code> means the same as <code>ctrl+a</code>. The sequence is checked before
+it is accepted, and the result goes straight back into the list.</li>
+</ul>
+</li>
+<li><strong>Mouse button</strong>: left, right, middle, the fourth and fifth buttons, or
+the wheel up and down.</li>
+<li><strong>Sending method</strong>: scan codes are the default and are what games and
+SDL applications expect. Switch to virtual key codes if a standard window ignores the
+key.</li>
+</ul>
+
+<h3>Timing</h3>
+
+<ul>
+<li><strong>Interval</strong>: milliseconds between actions, from 1 to one hour. The
+schedule is absolute, so the add-on does not drift over long runs, and Windows timers are
+switched to their highest resolution while it is running.</li>
+<li><strong>Random variation</strong>: adds or subtracts up to this many milliseconds at
+random on every cycle, so the rhythm is not perfectly mechanical.</li>
+<li><strong>Hold</strong>: how long each key or button stays down. Some games ignore
+presses that are shorter than one frame, so raise this to 30 or 50 milliseconds if a game
+does not react.</li>
+<li><strong>Pause between steps</strong>: the gap between one step of a sequence and the
+next. Raise it when a key needs time to take effect before the next step arrives, for
+example a key that opens a chat box before the text is typed.</li>
+<li><strong>Milliseconds between the characters of a text step</strong>: the typing speed,
+kept separate from the pause between steps so that a long pause between steps does not
+also slow the typing to a crawl.</li>
+<li><strong>Delay before the first action</strong>, with an optional spoken countdown, so
+you have time to switch to the target window after starting.</li>
+</ul>
+
+<h3>Limits and feedback</h3>
+
+<ul>
+<li><strong>Stop after this many actions</strong> and <strong>stop after this many
+seconds</strong>, either of which ends the run on its own. Zero means unlimited.</li>
+<li><strong>Only run while these programs are in the foreground</strong>: a list of
+executable names separated by semicolons, for example <code>game.exe; player.exe</code>. The
+presser pauses whenever another window takes focus and resumes when the target returns.
+The name can also be captured from the foreground window with a gesture.</li>
+<li><strong>Announce the action count</strong> every so many actions.</li>
+<li><strong>Beeps</strong> when starting, pausing, resuming and stopping.</li>
+<li><strong>Spoken status messages</strong>.</li>
+<li><strong>Silence typed character and command key announcements while running</strong>,
+so NVDA does not read every injected key back to you. The previous settings are restored
+when the presser stops. This option changes NVDA's own keyboard settings while the presser
+runs, so if NVDA is closed by force during a run, they can stay off and you will have to
+turn them on again in NVDA's keyboard settings.</li>
+</ul>
+
+<h2>Notes</h2>
+
+<ul>
+<li>Input is injected at the system level, so it goes to whichever window has focus. Make
+sure the right window is in the foreground, or use the program restriction.</li>
+<li>Applications that run elevated, as administrator, only accept injected input if NVDA
+is also running elevated.</li>
+<li>NVDA+z always stops the presser at once, even in the middle of a long sequence or a
+long key hold, and any key that is still held down is released.</li>
+<li>The add-on does nothing on secure screens, such as the Windows logon screen and User
+Account Control prompts.</li>
+</ul>
+
+</body>
+</html>
