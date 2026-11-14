@@ -23,7 +23,3 @@ The warning is now an ordinary small window that does not block anything. You ca
 ### 1.3 Documentation
 
 The readme was rewritten in plain language, and this changelog was added.
-
-## 2. Version 1.0, first build
-
-This was the first version. It could press keys, type text and click mouse buttons at a chosen interval, with profiles, named sequences, random steps, pauses, limits, a restriction to chosen programs, and an instant stop on NVDA+z.
